@@ -6,34 +6,26 @@ A graphical application to detect memory leaks in C programs using Valgrind. Des
 
 ## Features
 
-- **Easy-to-use graphical interface** with file browser
-- **Automatic tool detection** - checks for GCC and Valgrind availability
-- **Automatic C program compilation** with debugging symbols (-g flag)
-- **Memory leak detection** with detailed Valgrind analysis
-- **Clear, formatted output** showing memory issues and leak types
-- **WSL integration** for Windows users
-- **Status bar** showing current operation status
-- **Color-coded buttons** for better UX
-- **Two versions**: Full-featured (Windows/WSL) and lightweight (Linux)
+- Easy-to-use graphical interface
+- Automatic C program compilation
+- Memory leak detection with Valgrind
+- Clear output showing memory issues
+- WSL integration for Windows users
 
 ---
 
 ## Prerequisites
 
-- **Python 3.6+** with **tkinter** library
-  - Check if tkinter is installed: `python -c "import tkinter"`
-- **Windows 10/11** (for Windows version) or **Linux** (for Linux version)
-- **WSL** (Windows Subsystem for Linux) - for Windows users
-- **GCC** (C compiler) - installed in WSL or natively
-- **Valgrind** (memory analysis tool) - installed in WSL or natively
+- **Python 3.6+** (with tkinter)
+- **WSL** (Windows Subsystem for Linux)
+- **GCC** (C compiler)
+- **Valgrind** (memory analysis tool)
 
 ---
 
 ## Installation
 
-### For Windows Users
-
-#### 1. Install WSL
+### 1. Install WSL
 
 Open PowerShell as Administrator:
 
@@ -43,17 +35,7 @@ wsl --install
 
 Restart your computer when prompted.
 
-#### 2. Install GCC and Valgrind in WSL
-
-**Option A: Use the automated setup script**
-
-Open Ubuntu from Start Menu and navigate to the project directory, then run:
-
-```bash
-bash setup_wsl.sh
-```
-
-**Option B: Manual installation**
+### 2. Install GCC and Valgrind
 
 Open Ubuntu from Start Menu and run:
 
@@ -61,35 +43,14 @@ Open Ubuntu from Start Menu and run:
 sudo apt update && sudo apt install -y gcc valgrind
 ```
 
-For detailed instructions, see [`setup_wsl.md`](setup_wsl.md).
-
-#### 3. Install Python (if not already installed)
-
-Download from [python.org](https://www.python.org/downloads/) and ensure tkinter is included (it's usually bundled by default).
-
-### For Linux Users
-
-Install the required packages:
-
-```bash
-sudo apt update
-sudo apt install -y gcc valgrind python3 python3-tk
-```
-
 ---
 
 ## Usage
 
-### Choose Your Version
+### 1. Run the Application
 
-**For Windows (with WSL):**
 ```powershell
 python valgrindGUI_windows.py
-```
-
-**For Linux:**
-```bash
-python3 valgrindGUI.py
 ```
 
 ### Using the GUI
@@ -111,8 +72,9 @@ python3 valgrindGUI.py
 ✓ RESULT: No memory leaks detected!
 Memory usage: total heap usage: 3 allocs, 3 frees, 4,120 bytes allocated
 ```
-
 All memory was properly freed.
+
+![Screenshot of output](images/output_example1.png)
 
 ### Memory Leaks Detected
 
@@ -123,6 +85,8 @@ Leak Summary:
   Definitely lost: 48 bytes in 1 blocks
   Possibly lost: 24 bytes in 3 blocks
 ```
+![Screenshot of output](images/output_example2.png)
+![Screenshot of output](images/output_example3.png)
 
 **Leak Types:**
 - **Definitely lost** - Memory never freed (must fix)
@@ -167,60 +131,6 @@ Memory-Leak-Detector/
 
 ---
 
-## Troubleshooting
-
-### "WSL not available"
-- Ensure WSL is installed: `wsl --status` in PowerShell
-- Install WSL: `wsl --install` (as Administrator)
-- Restart your computer after installation
-
-### "GCC not installed in WSL"
-- Open Ubuntu from Start Menu
-- Run: `sudo apt update && sudo apt install -y gcc`
-- Or use the automated script: `bash setup_wsl.sh`
-
-### "Valgrind not installed in WSL"
-- Open Ubuntu from Start Menu
-- Run: `sudo apt install -y valgrind`
-- Or use the automated script: `bash setup_wsl.sh`
-
-### "tkinter not found" error
-- **Windows:** Reinstall Python with tkinter option checked
-- **Linux:** `sudo apt install python3-tk`
-
-### Compilation fails
-- Ensure your C file has no syntax errors
-- Check that GCC is properly installed
-- Verify the file path is correct
-
-### Analysis shows no memory leak information
-- Ensure Valgrind is installed and accessible
-- The program must be compiled with `-g` flag (done automatically)
-- Check that the executable was created successfully
-
----
-
-## GUI Versions Comparison
-
-### valgrindGUI_windows.py (Recommended for Windows)
-- **Full-featured** with comprehensive tool detection
-- **WSL integration** - automatically converts Windows paths to WSL format
-- **Fallback support** - tries WSL first, then native tools
-- **Status bar** showing current operation
-- **Color-coded buttons** for better user experience
-- **Detailed error messages** and setup instructions
-- **File browser** for easy file selection
-- **Compilation support** built into the GUI
-
-### valgrindGUI.py (Lightweight for Linux)
-- **Simple and lightweight** design
-- **Direct Valgrind execution** (no WSL overhead)
-- **Manual executable path entry**
-- **Basic output formatting**
-- Best for Linux users with native Valgrind installation
-
----
-
 ## How It Works
 
 1. **Tool Detection**: On startup, checks for WSL, GCC, and Valgrind availability
@@ -245,8 +155,6 @@ Contributions are welcome! Feel free to:
 
 ---
 
-## License
-
-This project is open source and available for educational purposes.
+This is open source project and available for educational purposes.
 
 ---
